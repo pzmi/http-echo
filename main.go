@@ -10,7 +10,7 @@ import (
 	"os/signal"
 	"time"
 
-	"github.com/hashicorp/http-echo/version"
+	"github.com/pzmi/http-echo/version"
 )
 
 var (
