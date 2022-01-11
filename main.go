@@ -9,8 +9,14 @@ import (
 	"os"
 	"os/signal"
 	"time"
+)
 
-	"github.com/pzmi/http-echo/version"
+var (
+	name    = "unknown"
+	version = "dev"
+	commit  = "none"
+	date    = "unknown"
+	builtBy = "unknown"
 )
 
 var (
@@ -28,7 +34,7 @@ func main() {
 
 	// Asking for the version?
 	if *versionFlag {
-		fmt.Fprintln(stderrW, version.HumanVersion)
+		fmt.Fprintln(stderrW, fmt.Sprintf("%s v%s (%s) %s", name, version, commit, date))
 		os.Exit(0)
 	}
 
@@ -46,10 +52,10 @@ func main() {
 
 	// Flag gets printed as a page
 	mux := http.NewServeMux()
-	mux.HandleFunc("/", httpLog(stdoutW, withAppHeaders(httpEcho(*textFlag))))
+	mux.HandleFunc("/", httpLog(stdoutW, withAppHeaders(name, version, httpEcho(*textFlag))))
 
 	// Health endpoint
-	mux.HandleFunc("/health", withAppHeaders(httpHealth()))
+	mux.HandleFunc("/health", withAppHeaders(name, version, httpHealth()))
 
 	server := &http.Server{
 		Addr:    *listenFlag,

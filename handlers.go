@@ -5,23 +5,21 @@ import (
 	"io"
 	"net/http"
 	"time"
-
-	"github.com/pzmi/http-echo/version"
 )
 
 const (
-	httpHeaderAppName    string = "X-App-Name"
-	httpHeaderAppVersion string = "X-App-Version"
+	httpHeaderAppName    = "X-App-Name"
+	httpHeaderAppVersion = "X-App-Version"
 
-	httpLogDateFormat string = "2006/01/02 15:04:05"
-	httpLogFormat     string = "%v %s %s \"%s %s %s\" %d %d \"%s\" %v\n"
+	httpLogDateFormat = "2006/01/02 15:04:05"
+	httpLogFormat     = "%v %s %s \"%s %s %s\" %d %d \"%s\" %v\n"
 )
 
 // withAppHeaders adds application headers such as X-App-Version and X-App-Name.
-func withAppHeaders(h http.HandlerFunc) http.HandlerFunc {
+func withAppHeaders(name string, version string, h http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set(httpHeaderAppName, version.Name)
-		w.Header().Set(httpHeaderAppVersion, version.Version)
+		w.Header().Set(httpHeaderAppName, name)
+		w.Header().Set(httpHeaderAppVersion, version)
 		h(w, r)
 	}
 }
