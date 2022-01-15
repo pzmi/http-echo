@@ -50,3 +50,7 @@ docker_manifests:
     image_templates:
     - pzmi/http-echo:{{ .Version }}-amd64
     - pzmi/http-echo:{{ .Version }}-arm64v8
+  - name_template: pzmi/http-echo:latest
+    image_templates:
+    - pzmi/http-echo:{{ .Version }}-amd64
+    - pzmi/http-echo:{{ .Version }}-arm64v8
