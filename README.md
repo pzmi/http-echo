@@ -1,5 +1,5 @@
-http-echo
-=========
+# http-echo
+
 
 HTTP Echo is a small go web server that serves the contents it was started with
 as an HTML page.
@@ -27,3 +27,7 @@ To change the port the service is listening on, specify the -listen flag:
 ```bash
 docker run -p 8080:8080 pzmi/http-echo -listen=:8080 -text="hello world"
 ```
+
+# Acknowledgmnets
+
+Based on https://github.com/hashicorp/http-echo
