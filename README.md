@@ -28,6 +28,6 @@ To change the port the service is listening on, specify the -listen flag:
 docker run -p 8080:8080 pzmi/http-echo -listen=:8080 -text="hello world"
 ```
 
-# Acknowledgmnets
+# Acknowledgements
 
 Based on https://github.com/hashicorp/http-echo
